@@ -1,0 +1,569 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
+local player = game.Players.LocalPlayer
+
+local Window = Rayfield:CreateWindow({
+
+   Name = "Rayfield Example Window",
+
+   LoadingTitle = "welcome to Lost Script",
+
+   LoadingSubtitle = "by Lost",
+
+   ConfigurationSaving = {
+
+      Enabled = true,
+
+      FolderName = nil, -- Create a custom folder for your hub/game
+
+      FileName = "Big Hub"
+
+   },
+
+   Discord = {
+
+      Enabled = true,
+
+      Invite = "https://discord.gg/JEKn3X72", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+
+   },
+
+   KeySystem = False,
+
+KeySettings = {
+
+   Title = "Lost Hub",
+
+   Subtitle = "Key System",
+
+   Note = "Join our clan discord for key - https://discord.gg/JEKn3X72",
+
+   FileName = "SiriusKey",
+
+   SaveKey = true,
+
+   GrabKeyFromSite = false,
+
+   Key = "MindBlowing"
+
+   }
+
+})
+
+local Tab = Window:CreateTab("Main")
+
+local Paragraph = Tab:CreateParagraph({Title = "Hello welcome to Lost script , this is a gui for the game animal simulator with a lot of functions", Content = ""})
+
+local Paragraph = Tab:CreateParagraph({Title = "Credits", Content = "Lost - made everything"})
+
+local Button = Tab:CreateButton({
+
+   Name = "Keyboard Needed for mobile",
+
+   Callback = function()
+
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "", Content = " If you are on mobile you need to use keyboard and click left shift to open and close the gui"})
+
+local Button = Tab:CreateButton({
+
+   Name = "Kos",
+
+   Callback = function()
+
+      game:GetService("StarterGui"):SetCore("SendNotification",{
+
+	Title = "Need to join the discord server", -- Required	Text = "access denied", -- Required
+
+	Icon = "rbxassetid://1234567890" -- Optional
+
+})
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "", Content = "This makes it so when you type .kos (player) it adds them to kos in discord"})
+
+local Button = Tab:CreateButton({
+
+   Name = "Join Team",
+
+   Callback = function()
+
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/lostbunny489/join-team/main/Code", true))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "", Content = "After pressed when you type .join (pack name) it will force join the pack"})
+
+local Tab = Window:CreateTab("autofarm")
+
+local Button = Tab:CreateButton({
+
+   Name = "Oni Hub",
+
+   Callback = function()
+
+      game:GetService("StarterGui"):SetCore("SendNotification",{
+
+	Title = "need to join the discord server", -- Required
+
+	Text = "access denied", -- Required
+
+	Icon = "rbxassetid://1234567890" -- Optional
+
+})
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "This is ONI Hub", Content = "Alot of features but is mostly for PC"})
+
+local Button = Tab:CreateButton({
+
+   Name = "Crow hub",
+
+   Callback = function()
+
+      game:GetService("StarterGui"):SetCore("SendNotification",{
+
+	Title = "need to join the discord server", -- Required
+
+	Text = "access denied", -- Required
+
+	Icon = "rbxassetid://1234567890" -- Optional
+
+})
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "This is Crow hub ", Content = "Alot of features better for mobile"})
+
+local Tab = Window:CreateTab("Kill")
+
+local Players = game:GetService("Players")
+
+local PlayerList = {}
+
+for _, player in pairs(Players:GetPlayers()) do
+
+    table.insert(PlayerList, player.Name)
+
+end
+
+local Dropdown = Tab:CreateDropdown({
+
+   Name = "Player List",
+
+   Options = PlayerList,
+
+   CurrentOption = PlayerList[1],
+
+   Flag = "PlayerDropdown",
+
+   Callback = function(Option)
+
+       -- The function that takes place when the selected option is changed
+
+       -- The variable (Option) is a string for the value that the dropdown was changed to
+
+       print("Selected player:", Option)
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "Teleport Button",
+
+   Callback = function()
+
+  -- Change this to the name of the player you want to teleport to
+
+       local playerName = Dropdown.CurrentOption
+
+       while true do
+
+           -- Find the other player's character
+
+           local otherPlayer = game.Players:FindFirstChild(playerName)
+
+           if otherPlayer then
+
+               local otherCharacter = otherPlayer.Character
+
+               if otherCharacter then
+
+                   -- Teleport the player to the other player's character
+
+                   wait(0.1) -- Add a small delay before teleporting
+
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = otherCharacter.HumanoidRootPart.CFrame
+
+                   -- Call the fire server method
+
+                   local targetPlayer = game:GetService("Players"):FindFirstChild(playerName)
+
+                   if targetPlayer then
+
+                       local targetHumanoid = targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid")
+
+                       if targetHumanoid then
+
+                           local args = {
+
+                               [1] = targetHumanoid,
+
+                               [2] = 1
+
+                           }
+
+                           game:GetService("ReplicatedStorage"):WaitForChild("jdskhfsIIIllliiIIIdchgdIiIIIlIlIli"):FireServer(unpack(args))
+
+                       end
+
+                   end
+
+               end
+
+           else
+
+               -- Stop the loop if the target player is not found
+
+               break
+
+           end
+
+           -- Check if the target player is alive, and stop the loop if they're not
+
+           local targetPlayer = game:GetService("Players"):FindFirstChild(playerName)
+
+           if targetPlayer then
+
+               local targetHumanoid = targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid")
+
+               if not targetHumanoid or targetHumanoid.Health <= 0 then
+
+                   break
+
+               end
+
+           end
+
+       end
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "Kill player", Content = "This will teleport you to the player and kill them , it's not instant kill I recommend taking someone around Your level"})
+
+local Tab = Window:CreateTab("other")
+
+local Button = Tab:CreateButton({
+
+   Name = "Tall / Big",
+
+   Callback = function()
+
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/lostbunny489/tall-script/main/Code'))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "makes your character big", Content = "set your character scale to 100, 100 100, 0, 100"})
+
+local Button = Tab:CreateButton({
+
+   Name = "HatFling",
+
+   Callback = function()
+
+      game:GetService("StarterGui"):SetCore("SendNotification",{
+
+	Title = "need to join the discord server", -- Required
+
+	Text = "access denied", -- Required
+
+	Icon = "rbxassetid://1234567890" -- Optional
+
+})
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "makes you a flying hat when you touch people they fling", Content = ""})
+
+local Button = Tab:CreateButton({
+
+   Name = "Search Gui",
+
+   Callback = function()
+
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/lostbunny489/search-/main/Code'))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "load a gui that you can search for other scripts", Content = ""})
+
+local Button = Tab:CreateButton({
+
+   Name = "OpHatFling",
+
+   Callback = function()
+
+      game:GetService("StarterGui"):SetCore("SendNotification",{
+
+	Title = "need to join the discord server", -- Required
+
+	Text = "access denied", -- Required
+
+	Icon = "rbxassetid://1234567890" -- Optional
+
+})
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "another hat fling accept this one allows you to walk around and fling people", Content = ""})
+
+local Button = Tab:CreateButton({
+
+   Name = "Chat Bypasser",
+
+   Callback = function()
+
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/lostbunny489/RobloxUsers/main/Players.txt'))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "loads chat bypassed allowing you to.day bad words", Content = ""})
+
+local Button = Tab:CreateButton({
+
+   Name = "chat spy",
+
+   Callback = function()
+
+      game:GetService("StarterGui"):SetCore("SendNotification",{
+
+	Title = "need to join the discord server", -- Required
+
+	Text = "access denied", -- Required
+
+	Icon = "rbxassetid://1234567890" -- Optional
+
+})
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "Chatspy see private chats..  Creep 🧐 ", Content = ""})
+
+local Tab = Window:CreateTab("teleports")
+
+local Button = Tab:CreateButton({
+
+   Name = "Barn Teleport",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(-303, 645, 589)))
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "Peak Teleport",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(76, 683, 797)))
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "Spawn",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(-113, 653, 313)))
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "Lava Area",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(114, 677, 1235)))
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "Snow Area",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(545, 651, 531)))
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "5K level cave",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(-14, 592, 794)))
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "ship",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(-32, 669, -182)))
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "Waterfall Cave",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(-518, 641, 180)))
+
+   end,
+
+})
+
+local Button = Tab:CreateButton({
+
+   Name = "Underworld",
+
+   Callback = function()
+
+      local character = player.Character
+
+      character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(-47, 146, 501)))
+
+   end,
+
+})
+
+local Tab = Window:CreateTab("Hub / Admin Scripts")
+
+local Button = Tab:CreateButton({
+
+   Name = "Infinite yeild",
+
+   Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "Loads infinite yeild admin script", Content = ""})
+
+local Button = Tab:CreateButton({
+
+   Name = "IV Admin",
+
+   Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/BloodyBurns/Hex/main/Iv%20Admin%20v2.lua'))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "Loads IV admin script", Content = ""})
+
+local Button = Tab:CreateButton({
+
+   Name = "Fates Admin",
+
+   Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua'))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "Loads Fates admin script", Content = ""})
+
+local Button = Tab:CreateButton({
+
+   Name = "GelatekHub / reanimate",
+
+   Callback = function()
+
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/toldblock/GelatekHub/main/Main.lua'))()
+
+   end,
+
+})
+
+local Paragraph = Tab:CreateParagraph({Title = "loads GelatekHub reanimate", Content = ""})
